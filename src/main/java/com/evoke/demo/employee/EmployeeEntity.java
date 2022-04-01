@@ -24,6 +24,7 @@ public class EmployeeEntity implements java.io.Serializable
 	private String email;
 	
 	@Column(name = "phone")
+	
 	private String phone;
 	
 	@Column(name = "created_by")
@@ -32,18 +33,24 @@ public class EmployeeEntity implements java.io.Serializable
 	@Column(name = "created_on")
 	private Date createdOn;
 
-	
+	@Column(name="dept_id")
+	private Long departmentId;
   
 	
 
 	
-	public EmployeeEntity(String name, String email, String phone, String createdBy, Date createdOn) {
+	
+
+	public EmployeeEntity(Long id, String name, String email, String phone, String createdBy, Date createdOn,
+			Long departmentId) {
 		super();
+		this.id = id;
 		this.name = name;
 		this.email = email;
 		this.phone = phone;
 		this.createdBy = createdBy;
 		this.createdOn = createdOn;
+		this.departmentId = departmentId;
 	}
 
 	public EmployeeEntity() {
@@ -97,5 +104,15 @@ public class EmployeeEntity implements java.io.Serializable
 	public void setCreatedOn(Date createdOn) {
 		this.createdOn = createdOn;
 	}
+
+	public Long getDepartmentId() {
+		return departmentId;
+	}
+
+	public void setDepartmentId(Long departmentId) {
+		this.departmentId = departmentId;
+	}
+
+	
 
 }

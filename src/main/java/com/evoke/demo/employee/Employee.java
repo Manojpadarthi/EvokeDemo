@@ -10,6 +10,8 @@ public class Employee
 	
 	private String createdBy;
 	
+	private String departmentName;
+	
 	public String getCreatedBy() {
 		return createdBy;
 	}
@@ -41,6 +43,16 @@ public class Employee
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+
+	public String getDepartmentName() {
+		return departmentName;
+	}
+
+	public void setDepartmentName(String departmentName) {
+		this.departmentName = departmentName;
+	}
+
+
 
 
 	

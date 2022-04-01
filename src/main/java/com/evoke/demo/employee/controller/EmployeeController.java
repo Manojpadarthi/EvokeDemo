@@ -1,6 +1,6 @@
 package com.evoke.demo.employee.controller;
 
-import java.util.Date;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.evoke.demo.employee.Employee;
@@ -45,9 +44,8 @@ public class EmployeeController
 	@PostMapping(path="/employees/save")
 	public ResponseEntity<EmployeeEntity> saveEmployee(@RequestBody Employee employee) 
 	{
-		EmployeeEntity entity=mapper.map(employee, EmployeeEntity.class);
-		entity.setCreatedOn(new Date());
-		EmployeeEntity employeeEntity = service.saveEmployee(entity);
+		
+		EmployeeEntity employeeEntity = service.saveEmployee(employee);
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body(employeeEntity);
 		
@@ -78,20 +76,22 @@ public class EmployeeController
 	@PutMapping(path="/employees/update/{id}")
 	public ResponseEntity<EmployeeEntity> updateEmployee(@PathVariable(name = "id") Long id, @RequestBody Employee employee){
         Optional<EmployeeEntity> employeeEntity=service.getEmployee(id);
-		EmployeeEntity entity=employeeEntity.orElseThrow(()-> new EmployeeNotFoundException("Employee Does not exist with given Id"));
-	    entity.setName(employee.getName());
+		//EmployeeEntity entity=employeeEntity.orElseThrow(()-> new EmployeeNotFoundException("Employee Does not exist with given Id"));
+	   /* entity.setName(employee.getName());
 		entity.setPhone(employee.getPhone());
 		entity.setEmail(employee.getEmail());
 		entity.setCreatedBy(employee.getCreatedBy());
-		entity.setCreatedOn(new Date());
-        EmployeeEntity updatedEntity = service.saveEmployee(entity);
+		entity.setCreatedOn(new Date());*/
+        EmployeeEntity updatedEntity = service.updateEmployee(employeeEntity.get(),employee);
 	    return ResponseEntity.status(HttpStatus.CREATED).body(updatedEntity);
 	}
 	
 	@DeleteMapping(path="/employees/delete/{id}")
 	public void deleteEmployee(@PathVariable(name = "id") Long id) 
 	{
-        service.deleteEmployee(id);
+		 Optional<EmployeeEntity> employeeEntity=service.getEmployee(id);
+			//EmployeeEntity entity=employeeEntity.orElseThrow(()-> new EmployeeNotFoundException("Employee Does not exist with given Id"));
+        service.deleteEmployee(id,employeeEntity.get());
 	}
 	
 	
