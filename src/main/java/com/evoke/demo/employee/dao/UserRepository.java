@@ -4,10 +4,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-import com.evoke.demo.employee.DepartmentEntity;
+import com.evoke.demo.employee.UserEntity;
 
 @Repository
 //@CrossOrigin("http://localhost:4200")
-public interface DepartmentRepository extends JpaRepository<DepartmentEntity, Long> {
+public interface UserRepository extends JpaRepository<UserEntity,Integer>{
+
+	UserEntity findByUserName(String username);
 
 }

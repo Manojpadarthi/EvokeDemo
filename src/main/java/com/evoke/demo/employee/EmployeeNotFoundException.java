@@ -1,11 +1,10 @@
 package com.evoke.demo.employee;
 
-public class EmployeeNotFoundException extends RuntimeException{
+public class EmployeeNotFoundException extends Exception{
 
 	public EmployeeNotFoundException(String message) {
 		super(message);
-		// TODO Auto-generated constructor stub
-	}
+		}
 	
 	
 
